@@ -1,4 +1,3 @@
 import 'normalize.css';
-import '/style/index.css';
-import '/style/*.scss';
+import '/style/index.scss';
 console.log("hello world!");
