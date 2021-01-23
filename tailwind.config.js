@@ -26,6 +26,10 @@ module.exports = {
 
       black: '#000',
       white: '#fff',
+      astral: '#3878A8',
+      fiord: '#39505F',
+      mercury: '#E5E5E5',
+      athens_gray: 'F9FAFB',
 
       gray: {
         100: '#f7fafc',

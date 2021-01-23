@@ -8,4 +8,7 @@
 
 .hero {
     height: 16rem;
+    @media (min-width: 768px){
+        height: 30rem;
+    }
 }
