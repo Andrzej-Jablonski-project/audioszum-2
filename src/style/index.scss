@@ -6,9 +6,17 @@
 
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
 .hero {
     height: 16rem;
     @media (min-width: 768px){
         height: 30rem;
+    }
+    &-img {
+        width: 680px;
     }
 }
