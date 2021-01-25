@@ -8,17 +8,27 @@
 </head>
 
 <body class="bg-athens_gray">
-    <header class="hero relative flex flex-col bg-cover bg-center p-6"
+    <header class="hero relative flex flex-col md:flex-col-reverse bg-cover bg-center p-6"
         style="background-image: url(img/page-banner.png);">
-        <nav>
+        <nav class="relative z-10 flex items-center justify-between sm:h-10 md:justify-center">
             <button
-                class="inline-flex items-center justify-center p-1 text-blue-900 transition duration-150 ease-in-out rounded-md hover_text-gray-200 hover_bg-gray-100 focus_outline-none focus_bg-gray-100 focus_text-gray-200"
+                class="md:hidden inline-flex items-center justify-center p-1 text-blue-900 transition duration-150 ease-in-out rounded-md hover_text-gray-200 hover_bg-gray-100 focus_outline-none focus_bg-gray-100 focus_text-gray-200"
                 id="mobile-menu-open-btn" type="button" aria-label="Menu strony" aria-haspopup="true">
                 <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
                     </path>
                 </svg>
             </button>
+            <ul class="flex md:flex md:space-x-10 bg-fiord px-4 py-2 rounded-lg shadow">
+                <li><a class="font-medium text-mercury transition duration-150 ease-in-out hover:text-astral"
+                        href="#help">Co robię</a></li>
+                <li><a class="font-medium text-mercury transition duration-150 ease-in-out hover:text-astral"
+                        href="#blog">Blog</a></li>
+                <li><a class="font-medium text-mercury transition duration-150 ease-in-out hover:text-astral"
+                        href="#price">Koszty</a></li>
+                <li><a class="font-medium text-mercury transition duration-150 ease-in-out hover:text-astral"
+                        href="#contact">Kontakt</a></li>
+            </ul>
         </nav>
         <h1 class="m-auto w-full pb-6 md:pb-0 px-6">
             <img class="hero-img m-auto" src="/img/logo.png" alt="Audioszum. Szersze spojżenie na elektronikę">
@@ -40,7 +50,7 @@
                     elektronicznej i komputerowej. Osobom nie technicznym mogę zaoferować odpowiednią usługę, natomiast
                     osoby techniczne, szukające rozwiązania danego problemu lub ochotników poszerzania swojej wiedzy
                     zapraszam na blog
-                    <a class="font-semibold hover:underline" href="http://https://digi-chip.pl">Digi-chip.pl</a>
+                    <a class="font-semibold hover:underline" href="https://digi-chip.pl">Digi-chip.pl</a>
                     i zachęcam do udziału w dyskusjach.
                 </p><img class="sm:pl-3 m-auto" src="img/handshake.png" alt="Pomocny uścisk dłoni.">
             </div>
@@ -53,7 +63,7 @@
                 pomoc w skutecznym rozwiązaniu Twojego problemu. Cała reszta, to wypadkowa jakości mojej pracy, którą Ty
                 możesz ocenić.</p>
         </section>
-        <section>
+        <section id="help">
             <header
                 class="w-full text-center my-6 p-6 text-2xl sm:text-4xl font-extrabold leading-9 sm:leading-10 tracking-tight bg-athens_gray">
                 <h2 class="text-fiord">W czym mogę pomóc?</h2>
@@ -138,7 +148,7 @@
                 </div>
             </div>
         </section>
-        <section>
+        <section id="price">
             <header
                 class="w-full text-center my-6 p-6 text-2xl sm:text-4xl font-extrabold leading-9 sm:leading-10 tracking-tight bg-athens_gray">
                 <h2 class="text-fiord">Czego oczekuję w zamian?</h2>
@@ -155,13 +165,13 @@
                     samego urządzenia nie biorę pod uwagę podczas wyceny. Z powyższych powodów nie znajdziesz tutaj
                     cennika i dlatego z tego miejsca zapraszam do kontaktu.
                     <a class="block w-36 text-center text-base my-6 py-2 px-4 border border-mercury rounded-lg hover:bg-mercury hover:text-fiord transition duration-150 ease-in-out"
-                        href="#kontakt">Kontakt
+                        href="#contact">Kontakt
                         <span class="ml-1">→</span>
                     </a>
                 </p>
             </div>
         </section>
-        <section>
+        <section id="blog">
             <header
                 class="w-full text-center my-6 p-6 text-2xl sm:text-4xl font-extrabold leading-9 sm:leading-10 tracking-tight bg-athens_gray">
                 <h2 class="text-fiord">Blog DIGI-CHIP</h2>
@@ -261,7 +271,7 @@
             </ul>
         </section>
         <section>
-            <header id="kontakt"
+            <header id="contact"
                 class="w-full text-center my-6 p-6 text-2xl sm:text-4xl font-extrabold leading-9 sm:leading-10 tracking-tight bg-athens_gray">
                 <h2 class="text-fiord">Kontakt</h2>
                 <span class="text-astral">Gdzie mnie znajdziesz</span>
@@ -284,7 +294,7 @@
             <li class="px-5 py-2"><a class="text-base leading-6 text-gray-500 hover:text-gray-800" href="#">Blog</a>
             </li>
             <li class="px-5 py-2"><a class="text-base leading-6 text-gray-500 hover:text-gray-800"
-                    href="#kontakt">Kontakt</a>
+                    href="#contact">Kontakt</a>
             </li>
             <li class="px-5 py-2"><a class="text-base leading-6 text-gray-500 hover:text-gray-800" href="#">Polityka
                     prywatności</a></li>
