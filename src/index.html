@@ -11,15 +11,15 @@
     <header class="hero relative flex flex-col md:flex-col-reverse bg-cover bg-center p-6"
         style="background-image: url(img/page-banner.png);">
         <nav class="relative z-10 flex items-center justify-between sm:h-10 md:justify-center">
-            <button
-                class="md:hidden inline-flex items-center justify-center p-1 text-blue-900 transition duration-150 ease-in-out rounded-md hover_text-gray-200 hover_bg-gray-100 focus_outline-none focus_bg-gray-100 focus_text-gray-200"
+            <button id="btn-open-menu-mobile"
+                class="md:hidden inline-flex items-center justify-center p-2 text-blue-900 transition duration-150 ease-in-out rounded-md hover:text-gray-200 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-200"
                 id="mobile-menu-open-btn" type="button" aria-label="Menu strony" aria-haspopup="true">
                 <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
                     </path>
                 </svg>
             </button>
-            <ul class="flex md:flex md:space-x-10 bg-fiord px-4 py-2 rounded-lg shadow">
+            <ul class="hidden md:flex md:space-x-10 bg-fiord px-4 py-2 rounded-lg shadow">
                 <li><a class="font-medium text-mercury transition duration-150 ease-in-out hover:text-astral"
                         href="#help">Co robię</a></li>
                 <li><a class="font-medium text-mercury transition duration-150 ease-in-out hover:text-astral"
@@ -30,6 +30,34 @@
                         href="#contact">Kontakt</a></li>
             </ul>
         </nav>
+        <div id="menu-mobile" class="hidden absolute inset-x-0 top-0 p-2 transition origin-top-right transform z-10">
+            <div class="bg-fiord px-4 pb-4 rounded-lg shadow-md" role="menu" aria-orientation="vertical"
+                aria-labelledby="main-manu">
+                <div class="pt-4">
+                    <div class="pb-3">
+                        <button id="btn-close-menu-mobile"
+                            class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-gray-200 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-200"
+                            type="button" aria-label="Zamknij menu"><svg class="w-6 h-6" stroke="currentColor"
+                                fill="none" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <ul id="list-menu-mobile">
+                    <li><a class="font-medium text-mercury transition duration-150 ease-in-out hover:bg-mercury hover:text-astral block py-2 pl-2 text-base rounded-md focus:outline-none focus:text-gray-600 focus:bg-gray-50"
+                            href="#help">Co robię</a></li>
+                    <li><a class="font-medium text-mercury transition duration-150 ease-in-out hover:bg-mercury hover:text-astral block py-2 pl-2 text-base rounded-md focus:outline-none focus:text-gray-600 focus:bg-gray-50"
+                            href="#blog">Blog</a></li>
+                    <li><a class="font-medium text-mercury transition duration-150 ease-in-out hover:bg-mercury hover:text-astral block py-2 pl-2 text-base rounded-md focus:outline-none focus:text-gray-600 focus:bg-gray-50"
+                            href="#price">Koszty</a></li>
+                    <li><a class="font-medium text-mercury transition duration-150 ease-in-out hover:bg-mercury hover:text-astral block py-2 pl-2 text-base rounded-md focus:outline-none focus:text-gray-600 focus:bg-gray-50"
+                            href="#contact">Kontakt</a></li>
+                </ul>
+            </div>
+
+        </div>
         <h1 class="m-auto w-full pb-6 md:pb-0 px-6">
             <img class="hero-img m-auto" src="/img/logo.png" alt="Audioszum. Szersze spojżenie na elektronikę">
         </h1>
