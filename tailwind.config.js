@@ -24,22 +24,22 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
 
-      black: '#000',
-      white: '#fff',
+      black: '#000000',
+      white: '#ffffff',
       astral: '#3878A8',
       fiord: '#39505F',
       mercury: '#E5E5E5',
-      athens_gray: 'F9FAFB',
+      athens: { gray: 'F9FAFB' },
 
       gray: {
         100: '#f7fafc',
         200: '#edf2f7',
         300: '#e2e8f0',
-        400: '#cbd5e0',
-        500: '#a0aec0',
+        400: '#9fa6b2',
+        500: '#6b7280',
         600: '#718096',
         700: '#4a5568',
-        800: '#2d3748',
+        800: '#252f3f',
         900: '#1a202c',
       },
       red: {
