@@ -6,7 +6,7 @@
   "pwaManifest": {
     "name": "Audioszum",
     "shortName": "AS",
-    "startURL": "https://audioszum.pl/",
+    "startURL": "/",
     "theme": "#39505f",
     "generateIconOptions": {
       "baseIcon": "./src/img/icon/android-chrome-512x512.png",
