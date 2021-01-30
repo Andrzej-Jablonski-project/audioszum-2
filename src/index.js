@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     const menuMobile = {
         button: document.querySelector('#btn-open-menu-mobile'),
         buttonOnList: document.querySelector('#btn-close-menu-mobile'),
-        boxMenu: document.querySelector('#menu-mobile'),
+        boxMenu: document.querySelector('#mobile-menu'),
         menuLinks: [...document.querySelectorAll('#list-menu-mobile>li')],
 
         isToggle(btn) {
