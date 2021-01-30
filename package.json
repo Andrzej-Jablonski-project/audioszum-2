@@ -1,8 +1,23 @@
 {
   "name": "audioszum",
   "version": "1.0.0",
-  "description": "Website audioszum.pl",
+  "description": "Szersze spojżenie na elektronikę",
   "main": "index.js",
+  "pwaManifest": {
+    "name": "Audioszum",
+    "shortName": "AS",
+    "startURL": "https://audioszum.pl/",
+    "theme": "#39505f",
+    "generateIconOptions": {
+      "baseIcon": "./src/img/icon/android-chrome-512x512.png",
+      "sizes": [
+        192,
+        384,
+        512
+      ],
+      "genFavicons": true
+    }
+  },
   "scripts": {
     "clean": "rm dist/*.*",
     "start:dev": "parcel serve src/index.html -p 8080",
@@ -22,6 +37,7 @@
   "dependencies": {
     "autoprefixer": "^9.8.6",
     "normalize.css": "^8.0.1",
+    "parcel-plugin-pwa-manifest": "^3.0.10",
     "style": "0.0.3",
     "tailwindcss": "1.9.6"
   }
