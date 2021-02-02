@@ -25,6 +25,7 @@ html(lang='pl')
     link(rel='mask-icon' href='/img/icon/safari-pinned-tab.svg' color='#5bbad5')
     meta(name='msapplication-TileColor' content='#2b5797')
     meta(name='theme-color' content='#ffffff')
+    link(rel='stylesheet' href='styles/style.scss')
     // Global site tag (gtag.js) - Google Analytics
     script(async='' src='https://www.googletagmanager.com/gtag/js?id=G-V98RFMX1JV')
     script.
@@ -33,6 +34,7 @@ html(lang='pl')
       gtag('js', new Date());
       gtag('config', 'G-V98RFMX1JV');
   body.bg-gray-100
-        block body
-        include footer
-        script(src='index.js')
+    block content
+    include footer.pug
+    block script
+      script(src='index.js')

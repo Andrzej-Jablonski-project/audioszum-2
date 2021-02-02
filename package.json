@@ -20,8 +20,8 @@
   },
   "scripts": {
     "clean": "rm dist/*.*",
-    "start:dev": "parcel src/index.pug -p 8080",
-    "build:prod": "rm -rf dist && parcel build src/index.pug",
+    "start:dev": "parcel serve src/index.pug -p 8080",
+    "build:prod": "rm -rf dist && parcel build src/index.pug --detailed-report",
     "build:ghpage": "rm -rf dist && parcel build src/index.pug -d docs"
   },
   "author": "",

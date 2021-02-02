@@ -1,6 +1,3 @@
-import 'normalize.css';
-import '/styles/index.scss';
-
 /*Service worker */
 /* if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js');
