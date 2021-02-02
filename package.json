@@ -1,7 +1,7 @@
 {
   "name": "audioszum",
   "version": "1.0.0",
-  "description": "Szersze spojżenie na elektronikę",
+  "description": "Website audioszum.pl",
   "main": "index.js",
   "pwaManifest": {
     "name": "Audioszum",
@@ -20,14 +20,15 @@
   },
   "scripts": {
     "clean": "rm dist/*.*",
-    "start:dev": "parcel serve src/index.pug -p 8080",
-    "build:prod": "rm -rf dist && parcel build src/index.pug"
+    "start:dev": "parcel src/index.pug -p 8080",
+    "build:prod": "rm -rf dist && parcel build src/index.pug",
+    "build:ghpage": "rm -rf dist && parcel build src/index.pug -d docs"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
     "npm": "^6.14.11",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.2.1",
@@ -38,7 +39,6 @@
     "autoprefixer": "^9.8.6",
     "normalize.css": "^8.0.1",
     "parcel-plugin-pwa-manifest": "^3.0.10",
-    "style": "0.0.3",
     "tailwindcss": "1.9.6"
   }
 }

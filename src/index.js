@@ -1,10 +1,11 @@
 import 'normalize.css';
-import '/style/index.scss';
+import '/styles/index.scss';
 
 /*Service worker */
-if ('serviceWorker' in navigator) {
+/* if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js');
 }
+*/
 
 console.log("hello world!");
 
