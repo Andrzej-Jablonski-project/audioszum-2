@@ -3,25 +3,109 @@ extends __layout__
 block content
     include policy-header
     main.container.m-auto
-        section
-            header.w-full.text-center.my-6.p-6.text-2xl.font-extrabold.leading-9.tracking-tight.bg-athens_gray(class='sm:text-4xl sm:leading-10')
-                h2.text-fiord Dla kogo?
-                span.text-astral Wszyscy jesteśmy ludźmi
-            .flex.flex-col-reverse.my-8.px-4.py-12.max-w-screen-xl.mx-auto.shadow.bg-mercury(class='sm:flex-row sm:px-6 lg:px-8 lg:py-8 sm:rounded-lg')
-                p.my-auto.text-lg.leading-7.text-fiord(class='sm:w-1/2 sm:pr-3')
-                    | Zdecydowanie dla wszystkich osób
-                    | potrzebujących pomocy w tematyce
-                    | elektronicznej i komputerowej. Osobom nie technicznym mogę zaoferować odpowiednią usługę, natomiast
-                    | osoby techniczne, szukające rozwiązania danego problemu lub ochotników poszerzania swojej wiedzy
-                    | zapraszam na blog
-                    a.font-semibold(class='hover:underline' target="_blank" rel="noopener noreferrer" href='https://digi-chip.pl')  Digi-chip.pl
-                    |  i zachęcam do udziału w dyskusjach.
-                img.m-auto(class='sm:pl-3' src='img/handshake.png' alt='Pomocny uścisk dłoni.')
-            p.px-4.py-12.max-w-screen-xl.mx-auto.shadow.text-lg.bg-fiord.text-mercury(class='sm:px-6 lg:px-8 lg:py-8 sm:rounded-lg')
-                | Jeżeli na pierwszym miejscu stawiasz na szybkości działania
-                | oraz niską
-                | cenę, a samo rozwiązanie Twojego
-                | problemu schodzi na drugi plan, to wiedz że to miejsce nie jest dla Ciebie. Moim głównym celem jest
-                | pomoc w skutecznym rozwiązaniu Twojego problemu. Cała reszta, to wypadkowa jakości mojej pracy, którą Ty
-                | możesz ocenić.
+        .my-4.leading-8.px-6(class="md:px-0")
+            a.text-gray-400.font-bold.transition.duration-150.ease-in-out(class='hover:underline hover:text-gray-800' href='/') Strona główna
+            span.font-bold.text-astral  / Polityka prywatności
+        article.text-fiord.text-lg.leading-7.tracking-tight.bg-white.p-8.my-8.shadow(class='sm:rounded-lg')
+            h1.text-4xl.font-semibold.leading-9.border-l-4.border-gray-400.pl-2.my-8 Polityka prywatności
+            p.py-4
+                | Niniejsza polityka prywatności i plików cookies opisuje zasady postępowania z danymi osobowymi
+                | oraz
+                | wykorzystywania plików cookies i innych technologii w ramach strony internetowej https://audioszum.pl
+            p.py-4
+                | Administratorem strony jest Andrzej Jabłoński, osoba prywatna, nie prowadząca działalności
+                | gospodarczej.
+            p.py-4 Kontakt z administratorem możliwy pod pod adresem e-mail kontakt@digi-chip.pl
+            section.py-4
+                h2.py-4.font-semibold §1 Definicje
+                ol
+                    li
+                        | 1. Na potrzeby niniejszej polityki prywatności, przyjmuje się następujące znaczenie poniższych
+                        | pojęć:
+                    ol(type='a')
+                        li
+                            | a) Administrator – Andrzej Jabłoński, osoba prywatna, nie prowadząca działalności gospodarczej
+                        li b) Strona – strona internetowa dostępna pod adresem https://audioszum.pl
+                        li c) Użytkownik – każdy podmiot, który korzysta ze Strony
+            section.py-4
+                h2.py-4.font-semibold §2 Dane osobowe
+                ol
+                    li
+                        | 1. Użytkownik może przekazywać swoje dane osobowe Administratorowi za pomocą formularzy dostępnych
+                        | na
+                        | Stronie.
+                    li 2. Administratorem danych osobowych Użytkownika jest Administrator.
+                    li 3. Administrator gwarantuje poufność wszelkich przekazanych mu danych osobowych.
+                    li
+                        | 4. Podanie danych jest zawsze dobrowolne, ale niezbędne do podjęcia przez Użytkownika akcji, do
+                        | której
+                        | przeznaczony jest dany formularz.
+                    li
+                        | 5. Administrator nie udostępnia przekazanych mu danych jakimkolwiek podmiotom trzecim.
+                    li
+                        | 6. Dane osobowe są gromadzone z należytą starannością i odpowiednio chronione przed dostępem do nich
+                        | przez osoby do tego nieupoważnione.
+                    li 7. Użytkownikowi przysługują następujące uprawnienia:
+                    ol(type='a')
+                        li
+                            | a) prawo do żądania dostępu do danych osobowych dotyczących osoby, której dane dotyczą, ich
+                            | sprostowania, usunięcia lub ograniczenia przetwarzania
+                        li b) prawo do wniesienia sprzeciwu wobec przetwarzania
+                        li c) prawo do przenoszenia danych
+                        li
+                            | d) prawo do cofnięcia zgody na przetwarzanie danych osobowych w określonym celu, jeżeli
+                            | Użytkownik
+                            | uprzednio taką zgodę wyraził
+                        li
+                            | e) prawo do wniesienia skargi do organu nadzorczego w związku z przetwarzaniem danych osobowych
+                            | przez Administratora
+            section.py-4
+                h2.py-4.font-semibold §3 Pliki cookies
+                ol
+                    li
+                        | 1. Administrator wykorzystuje pliki cookies (ciasteczka), czyli niewielkie informacje tekstowe,
+                        | przechowywane na urządzeniu końcowym Użytkownika (np. komputerze, tablecie, smartfonie). Cookies
+                        | mogą być odczytywane przez system teleinformatyczny Administratora.
+                    li
+                        | 2. Administrator przechowuje pliki cookies na urządzeniu końcowym Użytkownika, a następnie uzyskuje
+                        | dostęp do informacji w nich zawartych w celach statystycznych, oraz w celu zapewnienia prawidłowego
+                        | działania Strony.
+                    li
+                        | 3. Administrator informuje niniejszym Użytkownika, że istnieje możliwość takiej konfiguracji
+                        | przeglądarki internetowej, która uniemożliwia przechowywanie plików cookies na urządzeniu końcowym
+                        | Użytkownika. W takiej sytuacji, korzystanie ze Strony przez Użytkownika może być utrudnione.
+                    li
+                        | 4. Administrator wskazuje niniejszym, że pliki cookies mogą być przez Użytkownika usunięte po ich
+                        | zapisaniu przez Administratora, poprzez odpowiednie funkcje przeglądarki internetowej, programy
+                        | służące w tym celu lub skorzystanie z odpowiednich narzędzi dostępnych w ramach systemu
+                        | operacyjnego, z którego korzysta Użytkownik.
+            section.py-4
+                h2.py-4.font-semibold §4 Inne technologie
+                ol
+                    li
+                        | 1. Administrator informuje niniejszym Użytkownika, że stosuje następujące technologie śledzące
+                        | działania podejmowane przez Użytkownika w ramach Strony:
+                    ol(type='a')
+                        li a) kod śledzenia Google Analitycs – w celu analizy statystyk Strony.
+                        li b) kod śledzenia Piksel Facebooka – w celu analizy statystyk Strony.
+            section.py-4
+                h2.py-4.font-semibold §5 Logi serwera
+                ol
+                    li
+                        | 1. Korzystanie ze Strony wiąże się z przesyłaniem zapytań do serwera, na którym przechowywana jest
+                        | Strona.
+                    li
+                        | 2. Każde zapytanie skierowane do serwera zapisywane jest w logach serwera. Logi obejmują m.in. adres
+                        | IP
+                        | Użytkownika, datę i czas serwera, informacje o przeglądarce internetowej i systemie operacyjnym, z
+                        | jakiego korzysta Użytkownik.
+                    li 3. Logi zapisywane i przechowywane są na serwerze.
+                    li
+                        | 4. Dane zapisane w logach serwera nie są kojarzone z konkretnymi osobami korzystającymi ze Strony i
+                        | nie
+                        | są wykorzystywane przez Administratora w celu identyfikacji Użytkownika.
+                    li
+                        | 5. Logi serwera stanowią wyłącznie materiał pomocniczy służący do administrowania Stroną, a ich
+                        | zawartość nie jest ujawniana nikomu poza osobami upoważnionymi do administrowania serwerem.
+
         include contact
