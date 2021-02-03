@@ -1,10 +1,9 @@
 /*Service worker */
-/* if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js');
 }
-*/
 
-console.log("hello world!");
+console.log("EJ ALE WEŹ NIE PODGLĄDAJ, CO?");
 
 document.addEventListener('DOMContentLoaded', (e) => {
 

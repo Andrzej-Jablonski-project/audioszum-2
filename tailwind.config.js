@@ -29,8 +29,8 @@ module.exports = {
       astral: '#3878A8',
       fiord: '#39505F',
       mercury: '#E5E5E5',
-      athens: { gray: 'F9FAFB' },
       doly: '#ffff8c',
+      athens: { gray: 'F9FAFB' },
 
       gray: {
         100: '#f7fafc',
