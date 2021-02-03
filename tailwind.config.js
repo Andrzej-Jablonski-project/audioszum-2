@@ -30,6 +30,7 @@ module.exports = {
       fiord: '#39505F',
       mercury: '#E5E5E5',
       athens: { gray: 'F9FAFB' },
+      doly: '#ffff8c',
 
       gray: {
         100: '#f7fafc',
