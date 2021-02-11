@@ -1,4 +1,4 @@
-header.hero.relative.flex.flex-col.bg-cover.bg-center.p-6(class='md:flex-col-reverse' style='background-image: url(img/page-banner.png);')
+header.hero.relative.flex.flex-col.bg-cover.bg-center.p-6(class='md:flex-col-reverse' style='background-image: url(img/page-banner.webp);')
       nav.relative.z-10.flex.flex-row-reverse.items-center.justify-between(class='sm:h-10 md:justify-center')
         button#btn-open-menu-mobile.inline-flex.items-center.justify-center.p-2.text-blue-900.transition.duration-150.ease-in-out.rounded-md(class='md:hidden hover:text-gray-200 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-200' type='button' aria-label='Menu strony' aria-haspopup='true')
           svg.w-6.h-6(stroke='currentColor' fill='none' viewBox='0 0 24 24')
@@ -33,4 +33,6 @@ header.hero.relative.flex.flex-col.bg-cover.bg-center.p-6(class='md:flex-col-rev
             li
               a.font-medium.text-mercury.transition.duration-150.ease-in-out.block.py-2.pl-2.text-base.rounded-md(class='hover:bg-mercury hover:text-astral focus:outline-none focus:text-gray-600 focus:bg-gray-50' href='https://digi-chip.pl/kim-jestem/') O mnie
       h1.m-auto.w-full.pb-6.px-6(class='md:pb-0')
-        img.hero-img.m-auto(src='/img/logo.png' alt='Audioszum. Szersze spojżenie na elektronikę')
+        picture
+          source(srcset='/img/logo.webp' type='image/webp')
+          img.hero-img.m-auto(src='/img/logo.png' alt='Audioszum. Szersze spojżenie na elektronikę')

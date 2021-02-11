@@ -5,7 +5,9 @@ section#help
   .relative.grid.gap-2.mx-auto.my-5.mb-8(class='md:max-w-lg sm:gap-8 lg:grid-cols-3 lg:max-w-none')
     .mb-4
       header.w-full.text-lg.bg-mercury.overflow-hidden(class='sm:rounded-lg')
-        img.m-auto.object-cover.w-full.h-64(class='sm:h-80 md:h-64 lg:h-40 xl:h-48' src='img/amplifier.png' alt='Elektronika')
+        picture
+          source(srcset='/img/amplifier.webp' type='image/webp')
+          img.m-auto.object-cover.w-full.h-64(class='sm:h-80 md:h-64 lg:h-40 xl:h-48' src='/img/amplifier.png' alt='Elektronika')
         h3.flex.p-6.text-fiord.font-extrabold.tracking-tight
           img.mr-2(src='img/chip.svg' alt='')
           | Elektronika
@@ -32,7 +34,9 @@ section#help
           | Elektronika przemysłowa
     .mb-4
       header.w-full.text-lg.bg-mercury.overflow-hidden(class='sm:rounded-lg')
-        img.m-auto.object-cover.w-full.h-64(class='sm:h-80 md:h-64 lg:h-40 xl:h-48' src='img/motherboard.png' alt='Komputery')
+        picture
+          source(srcset='/img/motherboard.webp' type='image/webp')
+          img.m-auto.object-cover.w-full.h-64(class='sm:h-80 md:h-64 lg:h-40 xl:h-48' src='/img/motherboard.png' alt='Komputery')
         h3.flex.p-6.text-fiord.font-extrabold.tracking-tight
           img.mr-2(src='img/computer.svg' alt='')
           | Komputery
@@ -57,7 +61,9 @@ section#help
           | Naprawa monitorów
     .mb-4
       header.w-full.text-lg.bg-mercury.overflow-hidden(class='sm:rounded-lg')
-        img.m-auto.object-cover.w-full.h-64(class='sm:h-80 md:h-64 lg:h-40 xl:h-48' src='img/software.png' alt='Oprogramowanie')
+        picture
+          source(srcset='/img/software.webp' type='image/webp')
+          img.m-auto.object-cover.w-full.h-64(class='sm:h-80 md:h-64 lg:h-40 xl:h-48' src='/img/software.png' alt='Oprogramowanie')
         h3.flex.p-6.text-fiord.font-extrabold.tracking-tight
           img.mr-2(src='img/software.svg' alt='')
           | Oprogramowanie
