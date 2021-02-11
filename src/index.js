@@ -63,7 +63,7 @@ if (card) {
         }
 
         card.innerHTML += `<li class= "w-full mb-4 text-lg bg-mercury rounded-lg overflow-hidden shadow hover:shadow-lg transition duration-150 ease-in-out" >
-                <a href="${link}"><img class="m-auto object-cover w-full h-48" src="${image}" loadin="lazy" alt=""></a><h3 class="p-6 text-sm text-astral font-semibold tracking-tight">${category[category.isNumber()]}</h3 >
+                <a href="${link}"><img class="m-auto object-cover w-full h-48" src="${image}" loading="lazy" alt=""></a><h3 class="p-6 text-sm text-astral font-semibold tracking-tight">${category[category.isNumber()]}</h3 >
                 <a class="hover:underline" href="${link}"><p class="px-6 pb-6 text-xl font-extrabold text-fiord">${title}</p></a></li > `;
       }
 
