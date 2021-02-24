@@ -12,11 +12,11 @@ header.bg-mercury.p-3
             a.font-medium.text-mercury.transition.duration-150.ease-in-out(class='hover:text-astral' href='https://digi-chip.pl/') Blog
           li
             a.font-medium.text-mercury.transition.duration-150.ease-in-out(class='hover:text-astral' href='#contact') Kontakt
-      #mobile-menu.hidden.absolute.inset-x-0.top-0.p-2.transition.origin-top-right.transform.z-10
+      #mobile-menu.hidden.absolute.inset-x-0.top-0.p-2.transition.origin-top-right.transform.z-10(class='md:hidden')
         .bg-fiord.px-4.pb-4.rounded-lg.shadow-md(role='menu' aria-orientation='vertical' aria-labelledby='mobile-menu')
           .pt-4.flex.flex-row-reverse
             .pb-3
-              button#btn-close-menu-mobile.inline-flex.items-center.justify-center.p-2.text-gray-400.transition.duration-150.ease-in-out.rounded-md(class='hover:text-gray-200 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-200' type='button' aria-label='Zamknij menu')
+              button#btn-close-menu-mobile.inline-flex.items-center.justify-center.p-2.text-gray-400.transition.duration-150.ease-in-out.rounded-md.hidden(class='hover:text-gray-200 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-200' type='button' aria-label='Zamknij menu')
                 svg.w-6.h-6(stroke='currentColor' fill='none' viewBox='0 0 24 24')
                   path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12')
           ul#list-menu-mobile

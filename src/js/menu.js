@@ -2,31 +2,30 @@ function isMenuMobile() {
 
     document.addEventListener('DOMContentLoaded', (e) => {
 
-        const menuMobile = {
-            button: document.querySelector('#btn-open-menu-mobile'),
-            buttonOnList: document.querySelector('#btn-close-menu-mobile'),
-            boxMenu: document.querySelector('#mobile-menu'),
-            menuLinks: [...document.querySelectorAll('#list-menu-mobile>li')],
+        const mobileMenu = {
+            self: document.querySelector('#mobile-menu'),
+            btns: [document.querySelector('#btn-open-menu-mobile'), document.querySelector('#btn-close-menu-mobile')],
+            list: [...document.querySelectorAll('#list-menu-mobile>li')]
+        };
 
-            isToggle(btn) {
-                btn.addEventListener('click', () => {
-                    this.boxMenu.classList.toggle('hidden')
-                })
-            },
+        mobileMenu.btns.forEach((btn) => {
 
-            isCloseLink() {
-                this.menuLinks.forEach(li => {
-                    li.addEventListener('click', () => {
-                        this.boxMenu.classList.add('hidden');
-                    })
-
-                })
+            if (btn) {
+                btn.addEventListener('click', toggleMobileMenu.bind(mobileMenu));
             }
+        });
+        mobileMenu.list.forEach((li) => {
 
+            if (li) {
+                li.addEventListener('click', toggleMobileMenu.bind(mobileMenu));
+            }
+        });
+        function toggleMobileMenu() {
+            if (this.self) {
+                this.self.classList.toggle('hidden');
+                this.btns.forEach((btn) => btn.classList.toggle('hidden'));
+            }
         }
-        menuMobile.isToggle(menuMobile.button);
-        menuMobile.isToggle(menuMobile.buttonOnList);
-        menuMobile.isCloseLink();
 
     })
 }
