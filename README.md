@@ -42,7 +42,7 @@ Automation is built on the basis of bundler prettier and provides the following 
 npm install
 ```
 
-## How use
+## How to use
 
 Development project:
 
