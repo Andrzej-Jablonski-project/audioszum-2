@@ -19,7 +19,7 @@ function buildBlogCards() {
                         154: 'Komputery',
                         155: 'Oprogramowanie',
                         158: 'Programowanie',
-                        160: 'Projekty'
+                        160: 'Projekty',
                     }
 
                     const structureOfCard = `<li class= "w-full mb-4 text-lg bg-mercury rounded-lg overflow-hidden shadow hover:shadow-lg transition duration-150 ease-in-out">
@@ -40,16 +40,13 @@ function buildBlogCards() {
 
                     const cards = document.querySelectorAll('.blog-list>li');
 
-                    for (let i = 0; i < cards.length; i++) {
-                        if (i > numberOfCard - 1) {
-                            cards[i].classList.add('hidden');
-                        }
-                    }
+                    cards.forEach((card, index) => (index > numberOfCard - 1) ? card.classList.add('hidden') : null);
                 }
 
                 const numberOfCards = 6
 
                 displayingCards(numberOfCards);
+
             })
 
             .catch(err => {
