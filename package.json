@@ -1,44 +1,60 @@
 {
-  "name": "audioszum",
-  "version": "1.0.0",
-  "description": "Website audioszum.pl",
-  "main": "index.js",
-  "pwaManifest": {
-    "name": "Audioszum",
-    "shortName": "AS",
-    "startURL": "/",
-    "theme": "#39505f",
-    "generateIconOptions": {
-      "baseIcon": "./src/img/icon/android-chrome-512x512.png",
-      "sizes": [
-        192,
-        384,
-        512
-      ],
-      "genFavicons": true
+    "name": "audioszum",
+    "version": "1.0.0",
+    "description": "Website audioszum.pl",
+    "main": "index.js",
+    "pwaManifest": {
+        "name": "Audioszum",
+        "shortName": "AS",
+        "startURL": "/",
+        "theme": "#39505f",
+        "generateIconOptions": {
+            "baseIcon": "./src/img/icon/android-chrome-512x512.png",
+            "sizes": [
+                192,
+                384,
+                512
+            ],
+            "genFavicons": true
+        }
+    },
+    "scripts": {
+        "clean": "rm dist/*.*",
+        "start:dev": "parcel serve src/index.pug -p 8080",
+        "build:prod": "rm -rf dist && parcel build src/index.pug",
+        "build:ghpage": "rm -rf dist && parcel build src/index.pug -d docs",
+        "format": "npx prettier --write .",
+        "lint": "eslint ."
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged && lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.js": "eslint"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/preset-react": "^7.12.10",
+        "eslint": "^7.23.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-react": "^7.23.1",
+        "husky": "^4.3.8",
+        "lint-staged": "^10.5.4",
+        "npm": "^6.14.11",
+        "parcel-bundler": "^1.12.4",
+        "prettier": "2.2.1",
+        "pretty-quick": "^3.1.0",
+        "pug": "^3.0.0",
+        "sass": "^1.32.5"
+    },
+    "dependencies": {
+        "autoprefixer": "^9.8.6",
+        "normalize.css": "^8.0.1",
+        "parcel-plugin-pwa-manifest": "^3.0.10",
+        "tailwindcss": "1.9.6"
     }
-  },
-  "scripts": {
-    "clean": "rm dist/*.*",
-    "start:dev": "parcel serve src/index.pug -p 8080",
-    "build:prod": "rm -rf dist && parcel build src/index.pug",
-    "build:ghpage": "rm -rf dist && parcel build src/index.pug -d docs"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-react": "^7.12.10",
-    "npm": "^6.14.11",
-    "parcel-bundler": "^1.12.4",
-    "prettier": "^2.2.1",
-    "pug": "^3.0.0",
-    "sass": "^1.32.5"
-  },
-  "dependencies": {
-    "autoprefixer": "^9.8.6",
-    "normalize.css": "^8.0.1",
-    "parcel-plugin-pwa-manifest": "^3.0.10",
-    "tailwindcss": "1.9.6"
-  }
 }
