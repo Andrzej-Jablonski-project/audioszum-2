@@ -1,4 +1,4 @@
-import { isMenuMobile } from "./js/menu.js";
+import { toggleMobileMenu } from "./js/menu.js";
 import { buildBlogCards } from "./js/blogCards";
 import { sendForm } from "./js/form";
 
@@ -9,6 +9,10 @@ if ("serviceWorker" in navigator) {
 
 console.log("EJ ALE WEŹ NIE PODGLĄDAJ, CO?");
 
-isMenuMobile();
-buildBlogCards();
-sendForm();
+document.addEventListener("DOMContentLoaded", toggleMobileMenu);
+document.addEventListener("DOMContentLoaded", loadScripts);
+
+function loadScripts() {
+    buildBlogCards();
+    sendForm();
+}
