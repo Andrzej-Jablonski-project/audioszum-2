@@ -1,0 +1,48 @@
+{
+    "name": "Audioszum",
+    "short_name": "AS",
+    "start_url": "/",
+    "scope": "/",
+    "description": "Website audioszum.pl",
+    "icons": [
+        {
+            "src": "/img/icon/android-chrome-192x192.webp",
+            "sizes": "192x192",
+            "type": "image/webp",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/img/icon/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/img/icon/android-chrome-384x384.webp",
+            "sizes": "384x384",
+            "type": "image/webp",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/img/icon/android-chrome-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/img/icon/android-chrome-512x512.webp",
+            "sizes": "512x512",
+            "type": "image/webp",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/img/icon/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "theme_color": "#39505f",
+    "background_color": "#39505f",
+    "display": "standalone"
+}

@@ -47,19 +47,19 @@ npm install
 Development project:
 
 ```bash
-npm start:dev
+npm run start:dev
 ```
 
 Build a project for publication:
 
 ```bash
-npm build:prod
+npm run build:prod
 ```
 
 Clean:
 
 ```bash
-npm clean
+npm run clean
 ```
 
 ## Link to the website

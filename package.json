@@ -3,26 +3,24 @@
     "version": "1.0.0",
     "description": "Website audioszum.pl",
     "main": "index.js",
-    "pwaManifest": {
-        "name": "Audioszum",
-        "shortName": "AS",
-        "startURL": "/",
-        "theme": "#39505f",
-        "generateIconOptions": {
-            "baseIcon": "./src/img/icon/android-chrome-512x512.png",
-            "sizes": [
-                192,
-                384,
-                512
-            ],
-            "genFavicons": true
+    "customDistStructure": {
+        "config": {
+            ".css": "css",
+            "img": [
+                ".jpg",
+                ".png",
+                ".svg",
+                ".webp"
+            ]
+        },
+        "options": {
+            "development": true
         }
     },
     "scripts": {
-        "clean": "rm dist/*.*",
+        "clean": "rm -rf dist/ && rm -rf public/",
         "start:dev": "parcel serve src/index.pug -p 8080",
-        "build:prod": "rm -rf dist && parcel build src/index.pug",
-        "build:ghpage": "rm -rf dist && parcel build src/index.pug -d docs",
+        "build:prod": "rm -rf public && parcel build src/index.pug --no-source-maps --out-dir public",
         "format": "npx prettier --write .",
         "lint": "eslint ."
     },
@@ -45,7 +43,8 @@
         "husky": "^4.3.8",
         "lint-staged": "^10.5.4",
         "npm": "^6.14.11",
-        "parcel-bundler": "^1.12.4",
+        "parcel-bundler": "^1.12.5",
+        "parcel-plugin-custom-dist-structure": "^1.1.17",
         "prettier": "2.2.1",
         "pretty-quick": "^3.1.0",
         "pug": "^3.0.0",
@@ -54,7 +53,6 @@
     "dependencies": {
         "autoprefixer": "^9.8.6",
         "normalize.css": "^8.0.1",
-        "parcel-plugin-pwa-manifest": "^3.0.10",
         "tailwindcss": "1.9.6"
     }
 }
