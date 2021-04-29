@@ -20,7 +20,7 @@
     "scripts": {
         "clean": "rm -rf dist/ && rm -rf public/",
         "start:dev": "parcel serve src/index.pug -p 8080",
-        "build:prod": "rm -rf public/ && parcel build src/index.pug --no-source-maps --out-dir public",
+        "build:prod": "rm -rf public/ && parcel build src/index.pug --no-source-maps --out-dir public && parcel build src/404.pug --no-source-maps --out-dir public",
         "format": "npx prettier --write .",
         "lint": "eslint ."
     },
