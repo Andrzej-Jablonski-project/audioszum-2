@@ -2,4 +2,15 @@ section#blog
 	header.w-full.text-center.my-6.p-6.text-2xl.font-extrabold.leading-9.tracking-tight.bg-athens_gray(class='sm:text-4xl sm:leading-10')
 		h2.text-fiord Blog DIGI-CHIP
 		span.text-astral Audioszumowy blog
-	ul.blog-list.relative.grid.gap-2.mx-auto.mb-4.p-4(class='sm:p-0 md:max-w-lg sm:gap-8 lg:grid-cols-3 lg:max-w-none')
+	div.hidden(class='sk-wave sk-center')
+		div(class='sk-wave-rect')
+		div(class='sk-wave-rect')
+		div(class='sk-wave-rect')
+		div(class='sk-wave-rect')
+		div(class='sk-wave-rect')
+	div.hidden.error-js.box-off.flex-col.items-center.text-fiord.w-full.text-center.my-6.p-6.text-2xl.font-extrabold.leading-12(class='sm:text-4xl sm:leading-10')
+		p Wygląda na to, że DIGI-CHIP blog jest obecnie naelektryzowany. By go rozładować, spróbuj odświeżyć stronę.
+		a.block.w-36.text-center.text-base.font-medium.my-6.py-2.px-4.border.border-fiord.rounded-lg.transition.duration-150.ease-in-out(class='hover:bg-fiord hover:text-mercury' href='/')
+			| Odśwież
+			span.ml-1 → 
+	ul.blog-list.box-off.relative.grid.gap-2.mx-auto.mb-4.p-4(class='sm:p-0 md:max-w-lg sm:gap-8 lg:grid-cols-3 lg:max-w-none')

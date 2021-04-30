@@ -1,3 +1,4 @@
+const sectionBlog = document.querySelector("#blog");
 const card = document.querySelector(".blog-list");
 
 function buildBlogCards() {
@@ -10,17 +11,19 @@ function buildBlogCards() {
             .then((response) => response.json())
             .then((response) => {
                 for (const posts of response) {
-                    const { link, title, categories, images } = posts;
-
-                    createCard(link, categories, title.rendered, images.large);
+                    const {
+                        link,
+                        title: { rendered },
+                        categories,
+                        images: { large },
+                    } = posts;
+                    createCard(link, categories, rendered, large);
                 }
-
                 const numberOfCards = 6;
-
                 displayingCards(numberOfCards);
             })
-
             .catch((err) => {
+                sectionBlog.querySelector(".error-js").style.display = "flex";
                 console.log("Nie udało się pobrać danych");
                 console.log(err);
             });
@@ -45,10 +48,9 @@ function createCard(link, categories, title, image) {
 
 function displayingCards(numberOfCard) {
     const cards = document.querySelectorAll(".blog-list>li");
-
     cards.forEach((card, index) =>
         index > numberOfCard - 1 ? card.classList.add("hidden") : null,
     );
 }
 
-export { buildBlogCards };
+export { buildBlogCards, sectionBlog, card };

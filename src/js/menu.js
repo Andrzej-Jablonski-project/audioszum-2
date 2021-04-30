@@ -26,4 +26,4 @@ function toggleMobileMenu() {
     }
 }
 
-export { toggleMobileMenu };
+export { toggleMobileMenu, mobileMenu };

@@ -1,10 +1,17 @@
-/* @import "../../node_modules/normalize.css/normalize.css"; */
+//@import "normalize.css/normalize.css";
 
 @tailwind base;
 
 @tailwind components;
 
 @tailwind utilities;
+
+@import "spinkit/spinkit.css";
+
+:root {
+    --sk-size: 50px;
+    --sk-color: #3878a8;
+}
 
 html {
     scroll-behavior: smooth;
@@ -37,6 +44,15 @@ html {
 .picture-hands {
     max-width: 300px;
     width: 100%;
+}
+
+.box-on {
+    transition: opacity 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 1;
+}
+
+.box-off {
+    opacity: 0;
 }
 
 /*.bg{

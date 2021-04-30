@@ -136,6 +136,9 @@ module.exports = {
             extrabold: "800",
             black: "900",
         },
+        lineHeight: {
+            12: "3rem",
+        },
 
         width: (theme) => ({
             auto: "auto",

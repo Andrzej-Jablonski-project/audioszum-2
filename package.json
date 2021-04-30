@@ -53,6 +53,7 @@
     "dependencies": {
         "autoprefixer": "^9.8.6",
         "normalize.css": "^8.0.1",
+        "spinkit": "^2.0.1",
         "tailwindcss": "1.9.6"
     }
 }
