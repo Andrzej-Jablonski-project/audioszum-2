@@ -22,8 +22,13 @@ This is a simple website project.
 -   sass
 -   prettier
 -   autoprefixer
--   normalize (css)
--   tailwindcss
+
+## Libraries
+
+-   normalize (css) https://www.npmjs.com/package/normalize.css
+-   tailwindcss https://tailwindcss.com/
+-   spinkit https://www.npmjs.com/package/spinkit
+-   SmtpJS https://smtpjs.com/
 
 ## Automation
 
