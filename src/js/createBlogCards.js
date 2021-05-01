@@ -1,8 +1,10 @@
 const sectionBlog = document.querySelector("#blog");
-const card = document.querySelector(".blog-list");
+const cards = document.querySelector(".blog-list");
+const animation = document.querySelector(".sk-wave");
+const errorMessage = document.querySelector(".error-js");
 
-function buildBlogCards() {
-    if (card) {
+function createBlogCards() {
+    if (cards) {
         const data = "https://digi-chip.pl/wp-json/wp/v2/posts?";
 
         fetch(data, {
@@ -21,9 +23,33 @@ function buildBlogCards() {
                 }
                 const numberOfCards = 6;
                 displayingCards(numberOfCards);
+
+                setTimeout(() => {
+                    animation.style.display = "none";
+                    cards.classList.add("box-on");
+                    cards.classList.remove("box-off");
+                }, 3000);
             })
             .catch((err) => {
-                sectionBlog.querySelector(".error-js").style.display = "flex";
+                const btn = sectionBlog.querySelector("div > button");
+
+                btn.addEventListener("click", () => {
+                    animation.style.display = "flex";
+                    errorMessage.style.display = "none";
+                    createBlogCards();
+                });
+
+                setTimeout(() => {
+                    animation.style.display = "none";
+                    errorMessage.style.display = "flex";
+                    sectionBlog
+                        .querySelector(".error-js")
+                        .classList.add("box-on");
+                    sectionBlog
+                        .querySelector(".error-js")
+                        .classList.remove("box-off");
+                }, 3000);
+
                 console.log("Nie udało się pobrać danych");
                 console.log(err);
             });
@@ -43,14 +69,16 @@ function createCard(link, categories, title, image) {
         <a href="${link}"><img class="m-auto object-cover w-full h-48" src="${image}" loading="lazy" alt=""></a><h3 class="p-6 text-sm text-astral font-semibold tracking-tight">${category[categories]}</h3>
         <a class="hover:underline" href="${link}"><p class="px-6 pb-6 text-xl font-extrabold text-fiord">${title}</p></a></li >`;
 
-    card.innerHTML += structureOfCard;
+    cards.innerHTML += structureOfCard;
 }
 
 function displayingCards(numberOfCard) {
     const cards = document.querySelectorAll(".blog-list>li");
-    cards.forEach((card, index) =>
-        index > numberOfCard - 1 ? card.classList.add("hidden") : null,
-    );
+    cards.forEach((card, index) => {
+        if (index > numberOfCard - 1) {
+            card.classList.add("hidden");
+        }
+    });
 }
 
-export { buildBlogCards, sectionBlog, card };
+export { createBlogCards, sectionBlog, animation };
