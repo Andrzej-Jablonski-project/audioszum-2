@@ -2,57 +2,55 @@ const sectionBlog = document.querySelector("#blog");
 const cards = document.querySelector(".blog-list");
 const animation = document.querySelector(".sk-wave");
 const errorMessage = document.querySelector(".error-js");
+const url = "https://digi-chip.pl/wp-json/wp/v2/posts?";
 
-function createBlogCards() {
+async function createBlogCards() {
     if (cards) {
-        const data = "https://digi-chip.pl/wp-json/wp/v2/posts?";
+        try {
+            const res = await fetch(url);
 
-        fetch(data, {
-            method: "GET",
-        })
-            .then((response) => response.json())
-            .then((response) => {
-                for (const posts of response) {
-                    const {
-                        link,
-                        title: { rendered },
-                        categories,
-                        images: { large },
-                    } = posts;
-                    createCard(link, categories, rendered, large);
-                }
-                const numberOfCards = 6;
-                displayingCards(numberOfCards);
+            if (!res.ok) {
+                throw new Error(`Http error: ${res.status}`);
+            }
+            const json = await res.json();
 
-                setTimeout(() => {
-                    animation.style.display = "none";
-                    cards.classList.add("box-on");
-                    cards.classList.remove("box-off");
-                }, 1000);
-            })
-            .catch((err) => {
-                const btn = sectionBlog.querySelector("div > button");
+            for (const posts of json) {
+                const {
+                    link,
+                    title: { rendered },
+                    categories,
+                    images: { large },
+                } = posts;
+                createCard(link, categories, rendered, large);
+            }
+            const numberOfCards = 6;
 
-                btn.addEventListener("click", () => {
-                    animation.style.display = "flex";
-                    errorMessage.style.display = "none";
-                    createBlogCards();
-                });
+            displayingCards(numberOfCards);
 
-                setTimeout(() => {
-                    animation.style.display = "none";
-                    errorMessage.style.display = "flex";
-                    sectionBlog
-                        .querySelector(".error-js")
-                        .classList.add("box-on");
-                    sectionBlog
-                        .querySelector(".error-js")
-                        .classList.remove("box-off");
-                }, 1000);
+            setTimeout(() => {
+                animation.style.display = "none";
+                cards.classList.add("box-on");
+                cards.classList.remove("box-off");
+            }, 1000);
+        } catch (err) {
+            console.error(err);
+            const btn = sectionBlog.querySelector("div > button");
 
-                console.log("Nie udało się pobrać danych");
-                console.log(err);
+            btn.addEventListener("click", () => {
+                animation.style.display = "flex";
+                errorMessage.style.display = "none";
+                createBlogCards();
             });
+
+            setTimeout(() => {
+                animation.style.display = "none";
+                errorMessage.style.display = "flex";
+                sectionBlog.querySelector(".error-js").classList.add("box-on");
+                sectionBlog
+                    .querySelector(".error-js")
+                    .classList.remove("box-off");
+            }, 1000);
+        }
     }
 }
 
