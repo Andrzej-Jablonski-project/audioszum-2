@@ -28,7 +28,7 @@ function createBlogCards() {
                     animation.style.display = "none";
                     cards.classList.add("box-on");
                     cards.classList.remove("box-off");
-                }, 3000);
+                }, 1000);
             })
             .catch((err) => {
                 const btn = sectionBlog.querySelector("div > button");
@@ -48,7 +48,7 @@ function createBlogCards() {
                     sectionBlog
                         .querySelector(".error-js")
                         .classList.remove("box-off");
-                }, 3000);
+                }, 1000);
 
                 console.log("Nie udało się pobrać danych");
                 console.log(err);
