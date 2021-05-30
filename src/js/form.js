@@ -1,36 +1,64 @@
 import { Email } from "./libraries/smtp";
 
-const message = {
-    phrase: "Hej, zanim wyślesz:",
-    wrongEmail: " wpisz poprawny adres",
-    emptyEmail: " wpisz swój email",
-    emptyTextArea: " napisz wiadomość",
-    statusSendMessageIsOk: " Wiadomość została wysłana",
-    statusSendMessageNotOk: "Uzupełnij prawidłowo formularz",
-    boxStatus: document.querySelector("#form-info-text"),
+class Validation {
+    constructor(boxStatus) {
+        this.boxStatus = boxStatus;
+        // eslint-disable-next-line no-useless-escape
+        this.regexpEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        this.char = 3;
+        this.isEmail = false;
+        this.isMessage = false;
+    }
 
-    viewMessage(state) {
-        switch (state) {
-            case "emptyEmail":
-                this.boxStatus.textContent = `${this.phrase} ${this.emptyEmail}`;
-                break;
-            case "wrongEmail":
-                this.boxStatus.textContent = `${this.phrase} ${this.wrongEmail}`;
-                break;
-            case "emptyTextArea":
-                this.boxStatus.textContent = `${this.phrase} ${this.emptyTextArea}`;
-                break;
-            case "emptyTextAreaAndEmptyEmail":
-                this.boxStatus.textContent = `${this.phrase} ${this.emptyEmail} i ${this.emptyTextArea}`;
-                break;
-            case "emptyTextAreaAndWrongEmail":
-                this.boxStatus.textContent = `${this.phrase} ${this.wrongEmail} i ${this.emptyTextArea}`;
-                break;
-            default:
-                this.boxStatus.textContent = "";
+    checkInput(element, event) {
+        element.addEventListener(event, (e) => {
+            this.isEmail = this.checkIsEmail(e.target.value);
+            this.showInfo(false);
+        });
+    }
+
+    checkTextArea(element, event) {
+        element.addEventListener(event, (e) => {
+            this.isMessage = this.checkIsMessage(e);
+            this.showInfo(false);
+        });
+    }
+
+    showInfo(isOk) {
+        const message = {
+            phrase: "Hej, zanim wyślesz:",
+            wrongEmail: " wpisz poprawny adres email",
+            emptyEmail: " wpisz swój email",
+            emptyTextArea: " napisz wiadomość",
+            sendMessageIsOk: " Wiadomość została wysłana",
+            sendMessageNotOk: "Uzupełnij prawidłowo formularz",
+        };
+
+        if (!this.isEmail && !this.isMessage) {
+            this.boxStatus.textContent = `${message.phrase}${message.wrongEmail} i ${message.emptyTextArea}`;
+        } else if (!this.isMessage) {
+            this.boxStatus.textContent = message.phrase + message.emptyTextArea;
+        } else if (!this.isEmail) {
+            this.boxStatus.textContent = message.phrase + message.wrongEmail;
+        } else {
+            this.boxStatus.textContent = "";
         }
-    },
-};
+
+        return isOk ? message.sendMessageIsOk : message.sendMessageNotOk;
+    }
+
+    checkIsMessage(e) {
+        return e.target.value.length > this.char;
+    }
+
+    checkIsEmail(value) {
+        return this.regexpEmail.test(value);
+    }
+}
+
+const boxStatus = document.querySelector("#form-info-text");
+let isValidated = false;
+const formValid = new Validation(boxStatus);
 
 function sendForm() {
     const btnForm = document.querySelector("#btn-form");
@@ -39,13 +67,12 @@ function sendForm() {
         const emailInput = document.querySelector("#email-to");
         const textArea = document.querySelector("#text-area-form");
 
-        emailInput.addEventListener("click", checkEmail);
-        emailInput.addEventListener("keyup", checkEmail);
-
-        textArea.addEventListener("click", checkTextArea);
-        textArea.addEventListener("keyup", checkTextArea);
-
         const form = document.querySelector("#contact-form");
+
+        formValid.checkInput(emailInput, "click");
+        formValid.checkInput(emailInput, "keyup");
+        formValid.checkTextArea(textArea, "click");
+        formValid.checkTextArea(textArea, "keyup");
 
         btnForm.addEventListener("click", (e) => {
             e.preventDefault();
@@ -56,7 +83,9 @@ function sendForm() {
             const To = "";
             const token = "";
 
-            if (stateValidation.isValidated) {
+            isValidated = formValid.isEmail && formValid.isMessage;
+
+            if (isValidated) {
                 Email.send({
                     SecureToken: token,
                     To,
@@ -65,97 +94,15 @@ function sendForm() {
                     Body: `${textAreaValue}`,
                 }).then((message) => console.log(message));
 
-                message.boxStatus.textContent = `${message.statusSendMessageIsOk} `;
-                stateValidation.isValidated = false;
+                boxStatus.textContent = `${formValid.showInfo(true)} `;
+                formValid.isEmail = false;
+                formValid.isMessage = false;
                 form.reset();
             } else {
-                message.boxStatus.textContent = `${message.statusSendMessageNotOk} `;
+                boxStatus.textContent = `${formValid.showInfo(false)} `;
             }
         });
     }
 }
-
-function checkIsEmpty(value) {
-    return !value;
-}
-
-function checkIsEmail(value) {
-    // eslint-disable-next-line no-useless-escape
-    const patternEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return patternEmail.test(value);
-}
-
-const stateValidation = {
-    isValidated: false,
-    isEmptyEmail: "emptyEmail",
-    isWrongEmail: "",
-    isEmptyMessage: "emptyTextArea",
-};
-
-const checkEmail = (e) => {
-    if (checkIsEmpty(e.target.value)) {
-        message.viewMessage(stateValidation.isEmptyEmail);
-        stateValidation.isEmptyEmail = "emptyEmail";
-        stateValidation.isValidated = false;
-    } else if (!checkIsEmail(e.target.value)) {
-        stateValidation.isWrongEmail = "wrongEmail";
-        stateValidation.isEmptyEmail = "false";
-        stateValidation.isValidated = false;
-        message.viewMessage(stateValidation.isWrongEmail);
-    } else {
-        if (stateValidation.isEmptyMessage === "false") {
-            stateValidation.isValidated = true;
-        } else {
-            stateValidation.isValidated = false;
-        }
-
-        stateValidation.isEmptyEmail = "false";
-        stateValidation.isWrongEmail = "false";
-        message.viewMessage("");
-    }
-};
-
-const checkTextArea = (e) => {
-    if (
-        checkIsEmpty(e.target.value) &&
-        stateValidation.isEmptyEmail === "emptyEmail"
-    ) {
-        stateValidation.isEmptyMessage = "emptyTextAreaAndEmptyEmail";
-        stateValidation.isValidated = false;
-        message.viewMessage(stateValidation.isEmptyMessage);
-    } else if (
-        checkIsEmpty(e.target.value) &&
-        stateValidation.isWrongEmail === "wrongEmail"
-    ) {
-        stateValidation.isEmptyMessage = "emptyTextAreaAndWrongEmail";
-        stateValidation.isValidated = false;
-        message.viewMessage(stateValidation.isEmptyMessage);
-    } else if (
-        checkIsEmpty(e.target.value) &&
-        stateValidation.isWrongEmail !== "wrongEmail"
-    ) {
-        stateValidation.isEmptyMessage = "emptyTextArea";
-        stateValidation.isValidated = false;
-        message.viewMessage(stateValidation.isEmptyMessage);
-    } else if (
-        !checkIsEmpty(e.target.value) &&
-        stateValidation.isEmptyEmail === "emptyEmail"
-    ) {
-        stateValidation.isEmptyMessage = "false";
-        stateValidation.isValidated = false;
-        message.viewMessage(stateValidation.isEmptyEmail);
-    } else if (
-        !checkIsEmpty(e.target.value) &&
-        stateValidation.isWrongEmail === "wrongEmail"
-    ) {
-        stateValidation.isWrongMessage = "false";
-        stateValidation.isValidated = false;
-        message.viewMessage(stateValidation.isWrongEmail);
-    } else {
-        stateValidation.isValidated = true;
-        stateValidation.isEmptyMessage = "false";
-        message.viewMessage(stateValidation.isEmptyMessage);
-    }
-};
 
 export { sendForm };
