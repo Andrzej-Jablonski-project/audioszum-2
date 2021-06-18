@@ -10,7 +10,8 @@
                 ".jpg",
                 ".png",
                 ".svg",
-                ".webp"
+                ".webp",
+                ".gif"
             ]
         },
         "options": {
