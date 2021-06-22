@@ -80,6 +80,7 @@ module.exports = {
             76: "19rem",
             80: "20rem",
             96: "24rem",
+            100: "36rem",
         },
         fontFamily: {
             sans: [
