@@ -3,7 +3,7 @@ const cards = document.querySelector(".blog-list");
 const loadAnimation = document.querySelector(".sk-wave");
 const errorMessage = document.querySelector(".error-js");
 const wrapperBlog = document.querySelector(".wrapper-blog");
-const btn = sectionBlog.querySelector("div > button");
+const btn = document.querySelector(".reload-button-js");
 const API = "https://digi-chip.pl/wp-json/wp/v2/posts?";
 
 let isLoader = true;
