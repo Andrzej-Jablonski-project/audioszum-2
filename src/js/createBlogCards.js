@@ -2,12 +2,12 @@ const sectionBlog = document.querySelector("#blog");
 const cards = document.querySelector(".blog-list");
 const animation = document.querySelector(".sk-wave");
 const errorMessage = document.querySelector(".error-js");
-const url = "https://digi-chip.pl/wp-json/wp/v2/posts?";
+const URL = "https://digi-chip.pl/wp-json/wp/v2/posts?";
 
 async function createBlogCards() {
     if (cards) {
         try {
-            const res = await fetch(url);
+            const res = await fetch(URL);
 
             if (!res.ok) {
                 throw new Error(`Http error: ${res.status}`);
@@ -58,6 +58,7 @@ function createCard(link, categories, title, image) {
     const category = {
         153: "Audio-Video",
         154: "Komputery",
+        156: "Perełki Youtuba",
         155: "Oprogramowanie",
         158: "Programowanie",
         160: "Projekty",
