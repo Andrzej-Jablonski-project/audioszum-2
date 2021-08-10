@@ -1,5 +1,5 @@
 import { toggleMobileMenu, mobileMenu } from "./js/menu.js";
-import { createBlogCards, sectionBlog, animation } from "./js/createBlogCards";
+import { loadBlogCards, sectionBlog } from "./js/createBlogCards";
 import { sendForm } from "./js/form";
 
 /*Service worker */
@@ -15,18 +15,8 @@ function loadScripts() {
     toggleMobileMenu.bind(mobileMenu);
 
     if (sectionBlog) {
-        window.addEventListener("scroll", displayDataLoadingAnimation);
+        window.addEventListener("scroll", loadBlogCards);
     }
 
     sendForm();
-}
-
-function displayDataLoadingAnimation() {
-    const scrollPosition = window.scrollY;
-    const elTopPosition = sectionBlog.offsetTop;
-    if (scrollPosition + 500 > elTopPosition) {
-        animation.style.display = "flex";
-        createBlogCards();
-        window.removeEventListener("scroll", displayDataLoadingAnimation);
-    }
 }
