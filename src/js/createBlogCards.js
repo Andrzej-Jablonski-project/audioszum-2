@@ -9,12 +9,21 @@ const API = "https://digi-chip.pl/wp-json/wp/v2/posts?";
 let isLoader = true;
 
 function loadBlogCards() {
-    const scrollPosition = window.scrollY;
-    const elTopPosition = sectionBlog.offsetTop;
-    if (scrollPosition + 500 > elTopPosition) {
+    const options = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1,
+    };
+
+    const observer = new IntersectionObserver(loaderSectionBlog, options);
+
+    observer.observe(sectionBlog);
+
+    function loaderSectionBlog(payload) {
+        if (!payload[0].isIntersecting) return;
         loader(loadAnimation);
         createBlogCards();
-        window.removeEventListener("scroll", loadBlogCards);
+        observer.unobserve(payload[0].target);
     }
 }
 

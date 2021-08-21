@@ -1,108 +1,120 @@
 import { Email } from "./libraries/smtp";
-
-class Validation {
-    constructor(boxStatus) {
-        this.boxStatus = boxStatus;
-        // eslint-disable-next-line no-useless-escape
-        this.regexpEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        this.char = 3;
-        this.isEmail = false;
-        this.isMessage = false;
+class FormValidator {
+    constructor(form, fields) {
+        this.form = form;
+        this.fields = fields;
+        this.formErrors = [false, false];
+        this.isValid = false;
     }
 
-    checkInput(element, event) {
-        element.addEventListener(event, (e) => {
-            this.isEmail = this.checkIsEmail(e.target.value);
-            this.showInfo(false);
-        });
+    initialize() {
+        this.validateOnEntry();
+        this.validateOnSubmit();
     }
 
-    checkTextArea(element, event) {
-        element.addEventListener(event, (e) => {
-            this.isMessage = this.checkIsMessage(e);
-            this.showInfo(false);
-        });
-    }
+    validateOnSubmit() {
+        let self = this;
 
-    showInfo(isOk) {
-        const message = {
-            phrase: "Hej, zanim wyślesz:",
-            wrongEmail: " wpisz poprawny adres email",
-            emptyEmail: " wpisz swój email",
-            emptyTextArea: " napisz wiadomość",
-            sendMessageIsOk: " Wiadomość została wysłana",
-            sendMessageNotOk: "Uzupełnij prawidłowo formularz",
-        };
-
-        if (!this.isEmail && !this.isMessage) {
-            this.boxStatus.textContent = `${message.phrase}${message.wrongEmail} i ${message.emptyTextArea}`;
-        } else if (!this.isMessage) {
-            this.boxStatus.textContent = message.phrase + message.emptyTextArea;
-        } else if (!this.isEmail) {
-            this.boxStatus.textContent = message.phrase + message.wrongEmail;
-        } else {
-            this.boxStatus.textContent = "";
-        }
-
-        return isOk ? message.sendMessageIsOk : message.sendMessageNotOk;
-    }
-
-    checkIsMessage(e) {
-        return e.target.value.length > this.char;
-    }
-
-    checkIsEmail(value) {
-        return this.regexpEmail.test(value);
-    }
-}
-
-const boxStatus = document.querySelector("#form-info-text");
-let isValidated = false;
-const formValid = new Validation(boxStatus);
-
-function sendForm() {
-    const btnForm = document.querySelector("#btn-form");
-
-    if (btnForm) {
-        const emailInput = document.querySelector("#email-to");
-        const textArea = document.querySelector("#text-area-form");
-
-        const form = document.querySelector("#contact-form");
-
-        formValid.checkInput(emailInput, "click");
-        formValid.checkInput(emailInput, "keyup");
-        formValid.checkTextArea(textArea, "click");
-        formValid.checkTextArea(textArea, "keyup");
-
-        btnForm.addEventListener("click", (e) => {
+        this.form.addEventListener("submit", (e) => {
             e.preventDefault();
+            self.fields.forEach((field) => {
+                const input = document.querySelector(`.${field}`);
+                self.validateFields(input);
+                this.isValid = this.formErrors.includes(false);
+            });
 
-            const emailValue = document.querySelector("#email-to").value;
-            const textAreaValue = document.querySelector("#text-area-form")
-                .value;
+            const errorMessage = document.querySelector(".error-message-js");
             const To = "";
             const token = "";
 
-            isValidated = formValid.isEmail && formValid.isMessage;
-
-            if (isValidated) {
+            if (!this.isValid) {
                 Email.send({
                     SecureToken: token,
                     To,
-                    From: `${emailValue}`,
+                    From: document.querySelector(`.${self.fields[0]}`).value,
                     Subject: "Wiadomość z formularza audioszum.pl",
-                    Body: `${textAreaValue}`,
-                }).then((message) => console.log(message));
-
-                boxStatus.textContent = `${formValid.showInfo(true)} `;
-                formValid.isEmail = false;
-                formValid.isMessage = false;
-                form.reset();
-            } else {
-                boxStatus.textContent = `${formValid.showInfo(false)} `;
+                    Body: document.querySelector(`.${self.fields[1]}`).value,
+                }).then((message) => {
+                    if (message === "OK") {
+                        form.reset();
+                        this.isValid = false;
+                        errorMessage.textContent = "Hej, wysłałeś/aś wiadomość";
+                    } else {
+                        errorMessage.textContent =
+                            "Hej, coś poszło nie tak, spróbuj wysłać ponownie";
+                    }
+                });
             }
         });
     }
+
+    validateOnEntry() {
+        let self = this;
+        this.fields.forEach((field) => {
+            const input = document.querySelector(`.${field}`);
+
+            // eslint-disable-next-line no-unused-vars
+            input.addEventListener("input", (event) => {
+                self.validateFields(input);
+                this.isValid = this.formErrors.includes(false);
+            });
+        });
+    }
+
+    validateFields(field) {
+        let self = this;
+        // check for a valid massage
+        if (field.name === "message") {
+            if (field.value.trim() === "") {
+                self.setStatus("napisz wiadomość", "error");
+                this.formErrors[0] = false;
+            } else {
+                self.setStatus(null, "success");
+                this.formErrors[0] = true;
+            }
+        }
+
+        // check for a valid email address
+        if (field.type === "email") {
+            // eslint-disable-next-line no-useless-escape
+            const regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (regExp.test(field.value)) {
+                self.setStatus(null, "success");
+                this.formErrors[1] = true;
+            } else {
+                self.setStatus("wprowadź poprawny adres email", "error");
+                this.formErrors[1] = false;
+            }
+        }
+    }
+
+    setStatus(message, status) {
+        const errorMessage = document.querySelector(".error-message-js");
+
+        if (status === "success") {
+            errorMessage.textContent = message;
+
+            if (errorMessage.textContent === "" && this.isValid) {
+                errorMessage.textContent =
+                    "Hej, zanim wyślesz: wypełnij poprawnie formularz";
+            }
+        }
+
+        if (status === "error") {
+            errorMessage.textContent = `Hej, zanim wyślesz: ${message}`;
+        }
+    }
 }
 
-export { sendForm };
+const form = document.querySelector(".form-js");
+const fields = ["email-js", "msg-js"];
+
+const validator = new FormValidator(form, fields);
+
+function sendForm() {
+    form.setAttribute("novalidate", true);
+    validator.initialize();
+}
+
+export { sendForm, form };

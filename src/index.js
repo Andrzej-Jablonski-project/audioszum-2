@@ -1,6 +1,6 @@
 import { toggleMobileMenu, mobileMenu } from "./js/menu.js";
 import { loadBlogCards, sectionBlog } from "./js/createBlogCards";
-import { sendForm } from "./js/form";
+import { sendForm, form } from "./js/form";
 
 /*Service worker */
 if ("serviceWorker" in navigator) {
@@ -15,8 +15,9 @@ function loadScripts() {
     toggleMobileMenu.bind(mobileMenu);
 
     if (sectionBlog) {
-        window.addEventListener("scroll", loadBlogCards);
+        loadBlogCards();
     }
-
-    sendForm();
+    if (form) {
+        sendForm();
+    }
 }
