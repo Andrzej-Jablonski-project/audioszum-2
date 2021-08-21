@@ -1,16 +1,39 @@
 const sectionBlog = document.querySelector("#blog");
 const cards = document.querySelector(".blog-list");
-const animation = document.querySelector(".sk-wave");
+const loadAnimation = document.querySelector(".sk-wave");
 const errorMessage = document.querySelector(".error-js");
-const url = "https://digi-chip.pl/wp-json/wp/v2/posts?";
+const wrapperBlog = document.querySelector(".wrapper-blog");
+const btn = document.querySelector(".reload-button-js");
+const API = "https://digi-chip.pl/wp-json/wp/v2/posts?";
+
+let isLoader = true;
+
+function loadBlogCards() {
+    const options = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1,
+    };
+
+    const observer = new IntersectionObserver(loaderSectionBlog, options);
+
+    observer.observe(sectionBlog);
+
+    function loaderSectionBlog(payload) {
+        if (!payload[0].isIntersecting) return;
+        loader(loadAnimation);
+        createBlogCards();
+        observer.unobserve(payload[0].target);
+    }
+}
 
 async function createBlogCards() {
     if (cards) {
         try {
-            const res = await fetch(url);
+            const res = await fetch(API, { method: "GET" });
 
             if (!res.ok) {
-                throw new Error(`Http error: ${res.status}`);
+                throw new Error(`Error request, status: ${res.status}`);
             }
             const json = await res.json();
 
@@ -26,30 +49,18 @@ async function createBlogCards() {
             const numberOfCards = 6;
 
             displayingCards(numberOfCards);
-
-            setTimeout(() => {
-                animation.style.display = "none";
-                cards.classList.add("box-on");
-                cards.classList.remove("box-off");
-            }, 1000);
+            cards.classList.add("box-on");
+            cards.classList.remove("box-off");
+            wrapperBlog.style.height = "auto";
         } catch (err) {
             console.error(err);
-            const btn = sectionBlog.querySelector("div > button");
-
-            btn.addEventListener("click", () => {
-                animation.style.display = "flex";
-                errorMessage.style.display = "none";
-                createBlogCards();
-            });
-
-            setTimeout(() => {
-                animation.style.display = "none";
-                errorMessage.style.display = "flex";
-                sectionBlog.querySelector(".error-js").classList.add("box-on");
-                sectionBlog
-                    .querySelector(".error-js")
-                    .classList.remove("box-off");
-            }, 1000);
+            errorMessage.style.display = "flex";
+            errorMessage.classList.add("box-on");
+            errorMessage.classList.remove("box-off");
+            reloadBlogCards();
+        } finally {
+            isLoader = false;
+            loader(loadAnimation);
         }
     }
 }
@@ -58,6 +69,7 @@ function createCard(link, categories, title, image) {
     const category = {
         153: "Audio-Video",
         154: "Komputery",
+        156: "Perełki Youtuba",
         155: "Oprogramowanie",
         158: "Programowanie",
         160: "Projekty",
@@ -79,4 +91,26 @@ function displayingCards(numberOfCard) {
     });
 }
 
-export { createBlogCards, sectionBlog, animation };
+function loader(el) {
+    if (isLoader) {
+        el.style.display = "flex";
+    } else {
+        el.style.display = "none";
+    }
+}
+
+function reloadBlogCards() {
+    const heightBoxError = errorMessage.offsetHeight.toString();
+    console.log(heightBoxError);
+    btn.addEventListener("click", () => {
+        isLoader = true;
+        errorMessage.style.display = "none";
+        wrapperBlog.style.position = "relative";
+        wrapperBlog.style.height = `${heightBoxError}px`;
+        loadAnimation.classList.add("load-position");
+        loader(loadAnimation);
+        setTimeout(createBlogCards, 500);
+    });
+}
+
+export { loadBlogCards, sectionBlog };
