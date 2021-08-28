@@ -1,4 +1,6 @@
 import { Email } from "./libraries/smtp";
+import dotenv from "dotenv";
+dotenv.config();
 class FormValidator {
     constructor(form, fields) {
         this.form = form;
@@ -24,8 +26,10 @@ class FormValidator {
             });
 
             const errorMessage = document.querySelector(".error-message-js");
-            const To = "";
-            const token = "";
+            // eslint-disable-next-line no-undef
+            const To = process.env.TO_EMAIL;
+            // eslint-disable-next-line no-undef
+            const token = process.env.EMAIL_TOKEN;
 
             if (!this.isValid) {
                 Email.send({
