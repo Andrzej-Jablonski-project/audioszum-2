@@ -1,7 +1,7 @@
-picture.absolute.top-0.left-0.w-56.p-4
-	source(srcset='/img/logo.webp' type='image/webp')
-	img(src='/img/logo.png' width="1024" height="196" alt='Audioszum. Szersze spojżenie na elektronikę')
-header.bg-mercury.p-3
+header.bg-mercury.p-3.h-16
+	picture.absolute.top-0.left-0.w-56.p-4
+		source(srcset='/img/logo.webp' type='image/webp')
+		img(src='/img/logo.png' width="1024" height="196" alt='Audioszum. Szersze spojżenie na elektronikę')
 	nav.relative.z-10.flex.flex-row-reverse.items-center.justify-between(class='sm:h-10 lg:justify-center')
 		button#btn-open-menu-mobile.inline-flex.items-center.justify-center.p-2.text-blue-900.transition.duration-150.ease-in-out.rounded-md(class='lg:hidden hover:text-gray-200 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-200' type='button' aria-label='Menu strony' aria-haspopup='true')
 			svg.w-6.h-6(stroke='currentColor' fill='none' viewBox='0 0 24 24')
@@ -15,7 +15,7 @@ header.bg-mercury.p-3
 				a.font-medium.text-mercury.transition.duration-150.ease-in-out(class='hover:text-astral' href='https://digi-chip.pl/') Blog
 			li
 				a.font-medium.text-mercury.transition.duration-150.ease-in-out(class='hover:text-astral' href='#contact') Kontakt
-	#mobile-menu.hidden.absolute.inset-x-0.top-0.p-2.transition.origin-top-right.transform.z-10(class='md:hidden')
+	#mobile-menu.hidden.absolute.inset-x-0.top-0.p-2.transition.origin-top-right.transform.z-10(class='lg:hidden')
 		.bg-fiord.px-4.pb-4.rounded-lg.shadow-md(role='menu' aria-orientation='vertical' aria-labelledby='mobile-menu')
 			.pt-4.flex.flex-row-reverse
 				.pb-3
